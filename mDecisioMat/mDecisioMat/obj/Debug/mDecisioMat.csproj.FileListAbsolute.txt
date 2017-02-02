@@ -1,1 +1,2 @@
 D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Debug\mDecisioMat.exe.config
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMat\bin\Debug\mDecisioMat.exe.config
