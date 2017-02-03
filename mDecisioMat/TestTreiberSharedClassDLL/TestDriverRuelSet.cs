@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mDecisioMatServer
+namespace TestDriverSharedClassDLL
 {
-    class Program
+    class TestDriverRuelSet
     {
         static void Main(string[] args)
         {
-            //Test2
-            Console.WriteLine("Hello World");
         }
     }
 }
