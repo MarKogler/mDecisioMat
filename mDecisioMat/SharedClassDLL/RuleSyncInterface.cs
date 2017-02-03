@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestTreiberSharedClassDLL
+namespace SharedClassDLL
 {
-    class TesttreiberRuelSet
+    class RuleSyncInterface
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }

@@ -144,18 +144,18 @@ namespace SharedClassDLL
         /// <summary>
         /// Method to read a certain question
         /// </summary>
-        /// <param name="questionNumber">number of the question; starting at 1</param>
+        /// <param name="questionNumber">number of the question; starting at 0</param>
         /// <returns>value of the searched question</returns>
         public string[] GetQuestion(int questionNumber)
         {
             string[] question = new string[NumberOfAnswers + 2];
 
-            question[0] = AttributeHeader[questionNumber];
-            question[1] = AttributeTypeHeader[questionNumber];
+            question[0] = AttributeHeader[questionNumber + 2];
+            question[1] = AttributeTypeHeader[questionNumber + 2];
 
             for (int i = 2; i < NumberOfAnswers + 2; i++)
             {
-                question[i] = Attributes[i, questionNumber];
+                question[i] = Attributes[i, questionNumber + 2];
             }
             return question;
         }
