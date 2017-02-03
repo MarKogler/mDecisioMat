@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedClassDLL", "SharedCla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mDecisioMatClient", "mDecisioMatClient\mDecisioMatClient.csproj", "{E467F58E-3B9A-4F74-995E-43FC9A175076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDriverSharedClassDLL", "TestTreiberSharedClassDLL\TestDriverSharedClassDLL.csproj", "{BF06A2AA-4981-4F90-B717-C99108AFFFEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E467F58E-3B9A-4F74-995E-43FC9A175076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E467F58E-3B9A-4F74-995E-43FC9A175076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E467F58E-3B9A-4F74-995E-43FC9A175076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF06A2AA-4981-4F90-B717-C99108AFFFEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF06A2AA-4981-4F90-B717-C99108AFFFEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF06A2AA-4981-4F90-B717-C99108AFFFEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF06A2AA-4981-4F90-B717-C99108AFFFEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
