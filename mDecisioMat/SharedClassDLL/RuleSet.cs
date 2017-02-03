@@ -33,12 +33,10 @@ namespace SharedClassDLL
         /// <param name="attributes">attribute matrix</param>
         public RuleSet(string name, string[] attributeHeader, string[] attributeTypeHeader, string[,] attributes)
         {
-            this.name = name;
-            this.numberOfQuestions = attributeHeader.Length - 2;
-            this.numberOfAnswers = attributes.GetLength(0);
-            this.attributeHeader = attributeHeader;
-            this.attributeTypeHeader = attributeTypeHeader;
-            this.attributes = attributes;
+            this.Name = name;
+            this.AttributeHeader = attributeHeader;
+            this.AttributeTypeHeader = attributeTypeHeader;
+            this.Attributes = attributes;
         }
         #endregion
 
@@ -60,7 +58,9 @@ namespace SharedClassDLL
         }
 
         /// <summary>
-        /// Property to read and write the private variable numberOfQuestion
+        /// Property to read and write the private variable numberOfQuestion;
+        /// The number of questions can be changed by the properties "AttributeHeader", "AttributeTypeHeader" and "Attributes";
+        /// The user is in charge to keep data consistent
         /// </summary>
         /// <returns>value of private variable numberOfQuestions</returns>
         public int NumberOfQuestions
@@ -100,6 +100,7 @@ namespace SharedClassDLL
             set
             {
                 this.attributeHeader = value;
+                this.NumberOfQuestions = value.Length - 2;
             }
             get
             {
@@ -116,6 +117,7 @@ namespace SharedClassDLL
             set
             {
                 this.attributeTypeHeader = value;
+                this.NumberOfQuestions = value.Length - 2;
             }
             get
             {
@@ -132,6 +134,8 @@ namespace SharedClassDLL
             set
             {
                 this.attributes = value;
+                this.NumberOfQuestions = value.GetLength(1) - 2;
+                this.NumberOfAnswers = attributes.GetLength(0);
             }
             get
             {
@@ -153,12 +157,45 @@ namespace SharedClassDLL
             question[0] = AttributeHeader[questionNumber + 2];
             question[1] = AttributeTypeHeader[questionNumber + 2];
 
-            for (int i = 2; i < NumberOfAnswers + 2; i++)
+            for (int i = 0; i < NumberOfAnswers; i++)
             {
-                question[i] = Attributes[i, questionNumber + 2];
+                question[i + 2] = Attributes[i, questionNumber + 2];
             }
+
             return question;
+        }
+
+        /// <summary>
+        /// Provide a Function to print the content to on String
+        /// </summary>
+        /// <returns>content string</returns>
+        public override string ToString()
+        {
+            string contentstring = this.Name + "\n";
+
+            for (int i = 0; i < this.AttributeHeader.Length - 1; i++)
+            {
+                contentstring = contentstring + this.AttributeHeader[i] + "\t";
+            }
+            contentstring = contentstring + this.AttributeHeader[this.AttributeHeader.Length - 1] + "\n";
+
+            for (int i = 0; i < this.AttributeTypeHeader.Length - 1; i++)
+            {
+                contentstring = contentstring + this.AttributeTypeHeader[i] + "\t";
+            }
+            contentstring = contentstring + this.AttributeTypeHeader[this.AttributeTypeHeader.Length - 1] + "\n";
+
+            for (int j = 0; j < this.Attributes.GetLength(0); j++)
+            {
+                for (int i = 0; i < this.Attributes.GetLength(1) - 1; i++)
+                {
+                    contentstring = contentstring + this.Attributes[j, i] + "\t";
+                }
+                contentstring = contentstring + this.Attributes[j, this.Attributes.GetLength(1) - 1] + "\n";
+            }
+            return contentstring;
         }
         #endregion
     }
 }
+
