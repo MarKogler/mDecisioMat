@@ -15,7 +15,7 @@ namespace mDecisioMat
     /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 
-    class Converter :SharedClassDLL.RuleSyncInterface        
+    class RuleSyncProvider :SharedClassDLL.RuleSyncInterface        
     {
 
         #region Membervariables
@@ -36,7 +36,7 @@ namespace mDecisioMat
         /// <summary>
         /// With the constructor the server is started and the data from the CSV-file (RuleSet) is read in.
         /// </summary>
-        public Converter()
+        public RuleSyncProvider()
         {
             Console.WriteLine("Msolutions (C)");
             Console.WriteLine("Server started!" + Environment.NewLine);
