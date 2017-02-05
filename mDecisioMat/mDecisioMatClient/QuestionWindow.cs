@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace mDecisioMatClient
 {
-    public partial class Form1 : Form
+    public partial class QuestionWindow : Form
     {
-        public Form1()
+        public QuestionWindow()
         {
             InitializeComponent();
         }
