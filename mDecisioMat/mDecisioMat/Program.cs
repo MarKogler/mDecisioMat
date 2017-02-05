@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using SharedClassDLL;
 
 namespace mDecisioMatServer
 {
@@ -28,8 +29,7 @@ namespace mDecisioMatServer
             // Write to console
             Console.WriteLine();
             Console.WriteLine("Server is waiting for request from client!");
-            Console.WriteLine();
-
+                        
             // Keep server open for requests until the server is closed by the user.
             Console.WriteLine("Press Enter to close the server!");
             Console.ReadLine();

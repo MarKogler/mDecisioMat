@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 /// <summary>
 /// The SharedClassDLL contains all Classes that are needed for both Client and Server
@@ -12,14 +13,21 @@ namespace SharedClassDLL
     /// <summary>
     /// The Class RuleSet is used to open and use the read rule sets within the program
     /// </summary>
+    [DataContract()]
     public class RuleSet
     {
         #region Membervariables
+        [DataMember]
         private string name;
+        [DataMember]
         private int numberOfQuestions;
+        [DataMember]
         private int numberOfAnswers;
+        [DataMember]
         private string[] attributeHeader;
+        [DataMember]
         private string[] attributeTypeHeader;
+        [DataMember]
         private string[,] attributes; //[numberOfAnswers,numberOfQuestions]
         #endregion
 
