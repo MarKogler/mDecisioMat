@@ -1,6 +1,6 @@
 ﻿namespace mDecisioMatClient
 {
-    partial class Form1
+    partial class Client
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Client
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "Client";
+            this.Text = "Client";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
