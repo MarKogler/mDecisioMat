@@ -20,7 +20,7 @@ namespace mDecisioMatServer
             /// Die App.config enthält alle notwendigen Server Infos
             /// 
 
-            ServiceHost cCcyServiceHost = new ServiceHost(typeof(mDecisioMat.Converter));
+            ServiceHost cCcyServiceHost = new ServiceHost(typeof(mDecisioMat.RuleSyncProvider));
 
             // Open server
             cCcyServiceHost.Open();
