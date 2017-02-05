@@ -24,6 +24,9 @@ namespace mDecisioMatClient
         private RuleSyncInterface ruleInterface;
         private string[] availableRuleSets;
         private RuleSet currentRuleSet;
+        private QuestionWindow questionWindow;
+        private string answerstring;
+        private DialogResult dialogresult;
         #endregion
 
         #region Constructor
@@ -80,6 +83,30 @@ namespace mDecisioMatClient
         private void btnSelectRuleSet_Click(object sender, EventArgs e)
         {
             this.currentRuleSet = this.ruleInterface.GetSpecificRule(this.lbRuleSets.SelectedItem.ToString());
+            if (this.currentRuleSet != null)
+            {
+                this.btnGetDecision.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Method to start a decision finding dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnGetDecision_Click(object sender, EventArgs e)
+        {
+            this.questionWindow = new QuestionWindow(this.currentRuleSet, ref this.answerstring);
+            this.dialogresult = this.questionWindow.ShowDialog();
+
+            if (this.dialogresult == DialogResult.OK)
+            {
+                this.tbxAnswer.Text = this.answerstring;
+            }
+            else
+            {
+                this.tbxAnswer.Text = "";
+            }
         }
     }
 }
