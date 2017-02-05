@@ -17,9 +17,6 @@ namespace SharedClassDLL
         bool IsInitialized();
 
         [OperationContract]
-        string[] GetAvailableRuleSets();
-
-        [OperationContract]
-        RuleSet GetSpecificRule(string nameOfRuleSet);
+        bool ReadDataFromCsvFile();
     }
 }
