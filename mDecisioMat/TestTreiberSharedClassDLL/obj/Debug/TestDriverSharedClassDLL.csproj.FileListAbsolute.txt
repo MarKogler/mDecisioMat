@@ -1,0 +1,8 @@
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Debug\TestTreiberSharedClassDLL.exe.config
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Debug\TestTreiberSharedClassDLL.exe
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Debug\TestTreiberSharedClassDLL.pdb
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Debug\SharedClassDLL.dll
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Debug\SharedClassDLL.pdb
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\obj\Debug\TestDriverSharedClassDLL.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\obj\Debug\TestTreiberSharedClassDLL.exe
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\obj\Debug\TestTreiberSharedClassDLL.pdb

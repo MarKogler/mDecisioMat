@@ -1,0 +1,12 @@
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\bin\Debug\mDecisioMatClient.exe.config
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\bin\Debug\mDecisioMatClient.exe
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\bin\Debug\mDecisioMatClient.pdb
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\bin\Debug\SharedClassDLL.dll
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\bin\Debug\SharedClassDLL.pdb
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.Client.resources
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.Properties.Resources.resources
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.QuestionWindow.resources
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.csproj.GenerateResource.Cache
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.exe
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMatClient\obj\Debug\mDecisioMatClient.pdb

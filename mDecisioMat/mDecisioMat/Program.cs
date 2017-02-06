@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using SharedClassDLL;
+using System.Runtime.Serialization;
+
 
 namespace mDecisioMatServer
 {

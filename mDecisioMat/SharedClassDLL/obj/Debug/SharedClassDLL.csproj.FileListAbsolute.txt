@@ -1,0 +1,5 @@
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\bin\Debug\SharedClassDLL.dll
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\bin\Debug\SharedClassDLL.pdb
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.dll
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.pdb
+C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.csprojResolveAssemblyReference.cache
