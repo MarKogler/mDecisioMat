@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 
 /// <summary>
 /// The SharedClassDLL contains all Classes that are needed for both Client and Server
@@ -13,21 +14,21 @@ namespace SharedClassDLL
     /// <summary>
     /// The Class RuleSet is used to open and use the read rule sets within the program
     /// </summary>
-    [DataContract()]
+    [Serializable()]
     public class RuleSet
     {
         #region Membervariables
-        [DataMember]
+        //[DataMember]
         private string name;
-        [DataMember]
+        //[DataMember]
         private int numberOfQuestions;
-        [DataMember]
+        //[DataMember]
         private int numberOfAnswers;
-        [DataMember]
+        //[DataMember]
         private string[] attributeHeader;
-        [DataMember]
+        //[DataMember]
         private string[] attributeTypeHeader;
-        [DataMember]
+        //[DataMember]
         private string[,] attributes; //[numberOfAnswers,numberOfQuestions]
         #endregion
 
@@ -53,6 +54,7 @@ namespace SharedClassDLL
         /// Property to read and write the private variable name
         /// </summary>
         /// <returns>value of private variable name</returns>
+        [DataMember]
         public string Name
         {
             set
@@ -71,6 +73,7 @@ namespace SharedClassDLL
         /// The user is in charge to keep data consistent
         /// </summary>
         /// <returns>value of private variable numberOfQuestions</returns>
+        [DataMember]
         public int NumberOfQuestions
         {
             set
@@ -87,6 +90,7 @@ namespace SharedClassDLL
         /// Property to read and write the private variable numberOfAnswers
         /// </summary>
         /// <returns>value of private variable numberOfAnswers</returns>
+        [DataMember]
         public int NumberOfAnswers
         {
             set
@@ -103,6 +107,7 @@ namespace SharedClassDLL
         /// Property to read and write the private variable attributeheader
         /// </summary>
         /// <returns>value of private variable attributeHeader</returns>
+        [DataMember]
         public string[] AttributeHeader
         {
             set
@@ -120,6 +125,7 @@ namespace SharedClassDLL
         /// Property to read and write the private variable attributeTypeHeader
         /// </summary>
         /// <returns>value of private variable attributeTypeHeader</returns>
+        [DataMember]
         public string[] AttributeTypeHeader
         {
             set
@@ -137,12 +143,13 @@ namespace SharedClassDLL
         /// Property to read and write the private variable attributes
         /// </summary>
         /// <returns>value of private variable attributes</returns>
+        [DataMember]
         public string[,] Attributes
         {
             set
             {
                 this.attributes = value;
-                this.NumberOfQuestions = value.GetLength(1) - 2;
+                //this.NumberOfQuestions = value.GetLength(1) - 2;
                 this.NumberOfAnswers = attributes.GetLength(0);
             }
             get
