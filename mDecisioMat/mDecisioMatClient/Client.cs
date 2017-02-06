@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharedClassDLL;
 using System.ServiceModel;
+using System.Runtime.Serialization;
+
 
 /// <summary>
 /// Client for Decision Making
@@ -83,9 +85,17 @@ namespace mDecisioMatClient
         private void btnSelectRuleSet_Click(object sender, EventArgs e)
         {
             this.currentRuleSet = this.ruleInterface.GetSpecificRule(this.lbRuleSets.SelectedItem.ToString());
+
+            // Test
+            //string tempString;
+            //tempString = this.ruleInterface.GetSpecificRule(this.lbRuleSets.SelectedItem.ToString());
+            //this.tbxCurrentRuleSet.Text = tempString;
+            // ****************************************
+
             if (this.currentRuleSet != null)
             {
                 this.btnGetDecision.Enabled = true;
+                this.tbxCurrentRuleSet.Text = this.currentRuleSet.ToString();
             }
         }
 

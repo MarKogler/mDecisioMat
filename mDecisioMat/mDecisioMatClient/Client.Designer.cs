@@ -34,9 +34,11 @@
             this.btnGetAvailableRuleSets = new System.Windows.Forms.Button();
             this.gbCurrentRuleSet = new System.Windows.Forms.GroupBox();
             this.gbDecisionMaker = new System.Windows.Forms.GroupBox();
-            this.btnGetDecision = new System.Windows.Forms.Button();
             this.tbxAnswer = new System.Windows.Forms.TextBox();
+            this.btnGetDecision = new System.Windows.Forms.Button();
+            this.tbxCurrentRuleSet = new System.Windows.Forms.TextBox();
             this.gbRuleSetSelection.SuspendLayout();
+            this.gbCurrentRuleSet.SuspendLayout();
             this.gbDecisionMaker.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +87,7 @@
             // 
             // gbCurrentRuleSet
             // 
+            this.gbCurrentRuleSet.Controls.Add(this.tbxCurrentRuleSet);
             this.gbCurrentRuleSet.Location = new System.Drawing.Point(12, 246);
             this.gbCurrentRuleSet.Name = "gbCurrentRuleSet";
             this.gbCurrentRuleSet.Size = new System.Drawing.Size(539, 207);
@@ -103,6 +106,16 @@
             this.gbDecisionMaker.TabStop = false;
             this.gbDecisionMaker.Text = "Decision Maker";
             // 
+            // tbxAnswer
+            // 
+            this.tbxAnswer.Location = new System.Drawing.Point(6, 74);
+            this.tbxAnswer.Multiline = true;
+            this.tbxAnswer.Name = "tbxAnswer";
+            this.tbxAnswer.ReadOnly = true;
+            this.tbxAnswer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxAnswer.Size = new System.Drawing.Size(261, 147);
+            this.tbxAnswer.TabIndex = 2;
+            // 
             // btnGetDecision
             // 
             this.btnGetDecision.Enabled = false;
@@ -114,15 +127,15 @@
             this.btnGetDecision.UseVisualStyleBackColor = true;
             this.btnGetDecision.Click += new System.EventHandler(this.btnGetDecision_Click);
             // 
-            // tbxAnswer
+            // tbxCurrentRuleSet
             // 
-            this.tbxAnswer.Location = new System.Drawing.Point(6, 74);
-            this.tbxAnswer.Multiline = true;
-            this.tbxAnswer.Name = "tbxAnswer";
-            this.tbxAnswer.ReadOnly = true;
-            this.tbxAnswer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxAnswer.Size = new System.Drawing.Size(261, 147);
-            this.tbxAnswer.TabIndex = 2;
+            this.tbxCurrentRuleSet.Location = new System.Drawing.Point(6, 19);
+            this.tbxCurrentRuleSet.Multiline = true;
+            this.tbxCurrentRuleSet.Name = "tbxCurrentRuleSet";
+            this.tbxCurrentRuleSet.ReadOnly = true;
+            this.tbxCurrentRuleSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxCurrentRuleSet.Size = new System.Drawing.Size(527, 182);
+            this.tbxCurrentRuleSet.TabIndex = 2;
             // 
             // Client
             // 
@@ -136,6 +149,8 @@
             this.Text = "Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Client_FormClosing);
             this.gbRuleSetSelection.ResumeLayout(false);
+            this.gbCurrentRuleSet.ResumeLayout(false);
+            this.gbCurrentRuleSet.PerformLayout();
             this.gbDecisionMaker.ResumeLayout(false);
             this.gbDecisionMaker.PerformLayout();
             this.ResumeLayout(false);
@@ -152,6 +167,7 @@
         private System.Windows.Forms.GroupBox gbDecisionMaker;
         private System.Windows.Forms.Button btnGetDecision;
         private System.Windows.Forms.TextBox tbxAnswer;
+        private System.Windows.Forms.TextBox tbxCurrentRuleSet;
     }
 }
 
