@@ -84,12 +84,12 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnSelectRuleSet_Click(object sender, EventArgs e)
         {
-            this.currentRuleSet = this.ruleInterface.GetSpecificRule(this.lbRuleSets.SelectedItem.ToString());
+            this.currentRuleSet = this.ruleInterface.GetSpecificRuleSet(this.lbRuleSets.SelectedItem.ToString());
 
             if (this.currentRuleSet != null)
             {
                 this.btnGetDecision.Enabled = true;
-                this.tbxCurrentRuleSet.Text = this.currentRuleSet.ToString();
+                this.rtbCurrentRuleSet.Text = this.currentRuleSet.ToString();
             }
         }
 

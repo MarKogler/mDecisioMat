@@ -81,7 +81,7 @@ namespace mDecisioMat
 
             string[,] attributes = new string[1, 1];
             string[,] tempAttributes = new string[1, 1];
-            string[] oneRow;
+            string[] oneColumn;
 
             List<string[]> listAttributes;
 
@@ -187,16 +187,15 @@ namespace mDecisioMat
                     // Convert attributes to a list -> to transfer the data.
                     //listAttributes = attributes.Cast<string>().ToList();
                     listAttributes = new List<string[]>();
-                    oneRow = new string[attributes.GetLength(1)];
-                    
-                    for (int matLine = 0; matLine < attributes.GetLength(0); matLine++)
+
+                    for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
                     {
-                        for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
+                        oneColumn = new string[attributes.GetLength(0)];
+                        for(int matLine = 0; matLine < attributes.GetLength(0); matLine++)
                         {
-                            oneRow[matColumn] = attributes[matLine, matColumn];
+                            oneColumn[matLine] = attributes[matLine, matColumn];
                         }
-                        listAttributes.Insert(matLine, oneRow);
-                        oneRow = new string[attributes.GetLength(1)];
+                        listAttributes.Add(oneColumn);
                     }
 
                     // Creat another ruleset
@@ -247,7 +246,7 @@ namespace mDecisioMat
         /// </summary>
         /// <param name="nameOfRuleSet"></param>
         /// <returns>Returns the requested ruleset.</returns>
-        public RuleSet GetSpecificRule(string nameOfRuleSet)
+        public RuleSet GetSpecificRuleSet(string nameOfRuleSet)
         {
             // Default = Give back the first ruleset.
             RuleSet neededRuleSet = setsOfRules[0];
