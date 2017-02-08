@@ -14,22 +14,22 @@ namespace SharedClassDLL
     /// <summary>
     /// The Class RuleSet is used to open and use the read rule sets within the program
     /// </summary>
-    [Serializable()]
+    [DataContract]
     public class RuleSet
     {
         #region Membervariables
-        //[DataMember]
+        [DataMember]
         private string name;
-        //[DataMember]
+        [DataMember]
         private int numberOfQuestions;
-        //[DataMember]
+        [DataMember]
         private int numberOfAnswers;
-        //[DataMember]
+        [DataMember]
         private string[] attributeHeader;
-        //[DataMember]
+        [DataMember]
         private string[] attributeTypeHeader;
-        //[DataMember]
-        private string[,] attributes; //[numberOfAnswers,numberOfQuestions]
+        [DataMember]
+        private List<string[]> attributes; //[numberOfAnswers,numberOfQuestions]
         #endregion
 
         #region Constructor
@@ -40,7 +40,7 @@ namespace SharedClassDLL
         /// <param name="attributeHeader">header-line of the rule set</param>
         /// <param name="attributeTypeHeader">attribute type line of the rule set</param>
         /// <param name="attributes">attribute matrix</param>
-        public RuleSet(string name, string[] attributeHeader, string[] attributeTypeHeader, string[,] attributes)
+        public RuleSet(string name, string[] attributeHeader, string[] attributeTypeHeader, List<string[]> attributes)
         {
             this.Name = name;
             this.AttributeHeader = attributeHeader;
@@ -54,7 +54,6 @@ namespace SharedClassDLL
         /// Property to read and write the private variable name
         /// </summary>
         /// <returns>value of private variable name</returns>
-        [DataMember]
         public string Name
         {
             set
@@ -73,7 +72,6 @@ namespace SharedClassDLL
         /// The user is in charge to keep data consistent
         /// </summary>
         /// <returns>value of private variable numberOfQuestions</returns>
-        [DataMember]
         public int NumberOfQuestions
         {
             set
@@ -90,7 +88,6 @@ namespace SharedClassDLL
         /// Property to read and write the private variable numberOfAnswers
         /// </summary>
         /// <returns>value of private variable numberOfAnswers</returns>
-        [DataMember]
         public int NumberOfAnswers
         {
             set
@@ -107,7 +104,6 @@ namespace SharedClassDLL
         /// Property to read and write the private variable attributeheader
         /// </summary>
         /// <returns>value of private variable attributeHeader</returns>
-        [DataMember]
         public string[] AttributeHeader
         {
             set
@@ -125,7 +121,6 @@ namespace SharedClassDLL
         /// Property to read and write the private variable attributeTypeHeader
         /// </summary>
         /// <returns>value of private variable attributeTypeHeader</returns>
-        [DataMember]
         public string[] AttributeTypeHeader
         {
             set
@@ -143,14 +138,15 @@ namespace SharedClassDLL
         /// Property to read and write the private variable attributes
         /// </summary>
         /// <returns>value of private variable attributes</returns>
-        [DataMember]
-        public string[,] Attributes
+        public List<string[]> Attributes
         {
             set
             {
                 this.attributes = value;
                 //this.NumberOfQuestions = value.GetLength(1) - 2;
-                this.NumberOfAnswers = attributes.GetLength(0);
+                //this.NumberOfAnswers = attributes.GetLength(0);
+                this.numberOfAnswers = value.Count();
+                this.NumberOfQuestions = attributes[0].Length;
             }
             get
             {
@@ -172,10 +168,10 @@ namespace SharedClassDLL
             question[0] = AttributeHeader[questionNumber + 2];
             question[1] = AttributeTypeHeader[questionNumber + 2];
 
-            for (int i = 0; i < NumberOfAnswers; i++)
-            {
-                question[i + 2] = Attributes[i, questionNumber + 2];
-            }
+            //for (int i = 0; i < NumberOfAnswers; i++)
+            //{
+            //    question[i + 2] = Attributes[i, questionNumber + 2];
+            //}
 
             return question;
         }
@@ -200,14 +196,14 @@ namespace SharedClassDLL
             }
             contentstring = contentstring + this.AttributeTypeHeader[this.AttributeTypeHeader.Length - 1] + "\n";
 
-            for (int j = 0; j < this.Attributes.GetLength(0); j++)
-            {
-                for (int i = 0; i < this.Attributes.GetLength(1) - 1; i++)
-                {
-                    contentstring = contentstring + this.Attributes[j, i] + "\t";
-                }
-                contentstring = contentstring + this.Attributes[j, this.Attributes.GetLength(1) - 1] + "\n";
-            }
+            ////for (int j = 0; j < this.Attributes.GetLength(0); j++)
+            ////{
+            ////    for (int i = 0; i < this.Attributes.GetLength(1) - 1; i++)
+            ////    {
+            ////        contentstring = contentstring + this.Attributes[j, i] + "\t";
+            ////    }
+            ////    contentstring = contentstring + this.Attributes[j, this.Attributes.GetLength(1) - 1] + "\n";
+            ////}
             return contentstring;
         }
         #endregion
