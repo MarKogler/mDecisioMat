@@ -7,3 +7,10 @@ C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDeci
 C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMat\obj\Debug\mDecisioMatServer.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMat\obj\Debug\mDecisioMat.exe
 C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\mDecisioMat\obj\Debug\mDecisioMat.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\obj\Debug\mDecisioMat.exe
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\obj\Debug\mDecisioMat.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Debug\mDecisioMat.exe
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Debug\mDecisioMat.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Debug\SharedClassDLL.dll
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Debug\SharedClassDLL.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\obj\Debug\mDecisioMatServer.csprojResolveAssemblyReference.cache
