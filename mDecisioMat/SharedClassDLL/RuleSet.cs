@@ -21,15 +21,11 @@ namespace SharedClassDLL
         [DataMember]
         private string name;
         [DataMember]
-        private int numberOfQuestions;
-        [DataMember]
-        private int numberOfAnswers;
-        [DataMember]
         private string[] attributeHeader;
         [DataMember]
         private string[] attributeTypeHeader;
         [DataMember]
-        private List<string[]> attributes; //[numberOfAnswers,numberOfQuestions]
+        private List<string[]> attributes; //List of Answersets; Every Listelement is a Set of Answers to a specific Question
         #endregion
 
         #region Constructor
@@ -67,36 +63,30 @@ namespace SharedClassDLL
         }
 
         /// <summary>
-        /// Property to read and write the private variable numberOfQuestion;
-        /// The number of questions can be changed by the properties "AttributeHeader", "AttributeTypeHeader" and "Attributes";
-        /// The user is in charge to keep data consistent
+        /// Property to count the number of available Questions;
+        /// The number is counted by the number of attributes;
+        /// The user is in charge to keep data consistent (the length of "attributeHeader", "attributeTypeHeader" and "attributes" must be the same)
         /// </summary>
         /// <returns>value of private variable numberOfQuestions</returns>
         public int NumberOfQuestions
         {
-            set
-            {
-                this.numberOfQuestions = value;
-            }
             get
             {
-                return this.numberOfQuestions;
+                return (this.Attributes.Count - 2);
             }
         }
 
         /// <summary>
-        /// Property to read and write the private variable numberOfAnswers
+        /// Property to count numberOfAnswers;
+        /// The number is counted at the first element of "Attributes"
+        /// The user is in charge to keep data consistent (every Question must have the same number of Answers)
         /// </summary>
         /// <returns>value of private variable numberOfAnswers</returns>
         public int NumberOfAnswers
         {
-            set
-            {
-                this.numberOfAnswers = value;
-            }
             get
             {
-                return this.numberOfAnswers;
+                return this.Attributes[0].Length;
             }
         }
 
@@ -109,7 +99,6 @@ namespace SharedClassDLL
             set
             {
                 this.attributeHeader = value;
-                this.NumberOfQuestions = value.Length - 2;
             }
             get
             {
@@ -126,7 +115,6 @@ namespace SharedClassDLL
             set
             {
                 this.attributeTypeHeader = value;
-                this.NumberOfQuestions = value.Length - 2;
             }
             get
             {
@@ -143,10 +131,6 @@ namespace SharedClassDLL
             set
             {
                 this.attributes = value;
-                //this.NumberOfQuestions = value.GetLength(1) - 2;
-                //this.NumberOfAnswers = attributes.GetLength(0);
-                this.numberOfAnswers = value.Count();
-                this.NumberOfQuestions = attributes[0].Length;
             }
             get
             {
@@ -155,7 +139,7 @@ namespace SharedClassDLL
         }
         #endregion
 
-        #region Methods
+        #region dynamic Methods
         /// <summary>
         /// Method to read a certain question
         /// </summary>
@@ -168,10 +152,11 @@ namespace SharedClassDLL
             question[0] = AttributeHeader[questionNumber + 2];
             question[1] = AttributeTypeHeader[questionNumber + 2];
 
-            //for (int i = 0; i < NumberOfAnswers; i++)
-            //{
-            //    question[i + 2] = Attributes[i, questionNumber + 2];
-            //}
+            string[] temp = this.Attributes[questionNumber + 2];
+            for (int i = 0; i < NumberOfAnswers; i++)
+            {
+                question[i + 2] = temp[i];
+            }
 
             return question;
         }
@@ -182,29 +167,129 @@ namespace SharedClassDLL
         /// <returns>content string</returns>
         public override string ToString()
         {
-            string contentstring = this.Name + "\n";
 
+            //Add name
+            string contentstring = this.Name + Environment.NewLine;
+
+            //Add attributeHeader
             for (int i = 0; i < this.AttributeHeader.Length - 1; i++)
             {
-                contentstring = contentstring + this.AttributeHeader[i] + "\t";
+                contentstring = contentstring + String.Format("{0,-50}", this.AttributeHeader[i]);
             }
-            contentstring = contentstring + this.AttributeHeader[this.AttributeHeader.Length - 1] + "\n";
+            contentstring = contentstring + String.Format("{0,-50}", this.AttributeHeader[this.AttributeHeader.Length - 1]) + Environment.NewLine;
 
+            //Add attributeTypeHeader
             for (int i = 0; i < this.AttributeTypeHeader.Length - 1; i++)
             {
-                contentstring = contentstring + this.AttributeTypeHeader[i] + "\t";
+                contentstring = contentstring + String.Format("{0,-50}", this.AttributeTypeHeader[i]);
             }
-            contentstring = contentstring + this.AttributeTypeHeader[this.AttributeTypeHeader.Length - 1] + "\n";
+            contentstring = contentstring + String.Format("{0,-50}", this.AttributeTypeHeader[this.AttributeTypeHeader.Length - 1]) + Environment.NewLine;
 
-            ////for (int j = 0; j < this.Attributes.GetLength(0); j++)
-            ////{
-            ////    for (int i = 0; i < this.Attributes.GetLength(1) - 1; i++)
-            ////    {
-            ////        contentstring = contentstring + this.Attributes[j, i] + "\t";
-            ////    }
-            ////    contentstring = contentstring + this.Attributes[j, this.Attributes.GetLength(1) - 1] + "\n";
-            ////}
+            //Add attributes
+            for (int i = 0; i < this.NumberOfAnswers; i++)
+            {
+                for (int j = 0; j < this.NumberOfQuestions + 1; j++)
+                {
+                    contentstring = contentstring + String.Format("{0,-50}", this.Attributes[j][i]);
+                }
+                contentstring = contentstring + String.Format("{0,-50}", this.Attributes[this.Attributes.Count - 1][i]) + Environment.NewLine;
+            }
+
             return contentstring;
+        }
+
+        /// <summary>
+        /// Add a new Line of Answers to the existing sets of Answers
+        /// </summary>
+        /// <param name="newAnswerLine">Line of Answers that should be added</param>
+        public void AddNewAnswerLine(string[] newAnswerLine)
+        {
+            this.Attributes = CreateNewAttributesList(newAnswerLine, this.Attributes);
+        }
+
+        /// <summary>
+        /// Add a new set of answers for a new quetsion to the existing list of sets of answers
+        /// </summary>
+        /// <param name="newSetOfAnswers"></param>
+        public void AddNewQuestionWithSetOfAnswers(string question, string typeOfQuestion, string[] newSetOfAnswers)
+        {
+            //add to attributeHeader
+            string[] newAttributeHeader = new string[this.AttributeHeader.Length + 1];
+            for (int i = 0; i < this.AttributeHeader.Length; i++)
+            {
+                newAttributeHeader[i] = this.AttributeHeader[i];
+            }
+            newAttributeHeader[newAttributeHeader.Length - 1] = question;
+            this.AttributeHeader = newAttributeHeader;
+
+            //add to attributeTypeHeader
+            string[] newAttributeTypeHeader = new string[this.AttributeTypeHeader.Length + 1];
+            for (int i = 0; i < this.AttributeTypeHeader.Length; i++)
+            {
+                newAttributeTypeHeader[i] = this.AttributeTypeHeader[i];
+            }
+            newAttributeTypeHeader[newAttributeTypeHeader.Length - 1] = typeOfQuestion;
+            this.AttributeTypeHeader = newAttributeTypeHeader;
+
+            this.Attributes = AddNewSetOfAnswers(newSetOfAnswers, this.Attributes);
+        }
+        #endregion
+
+        #region static Methods
+        /// <summary>
+        /// Create a new List of Answersets out of a single line of Answers
+        /// </summary>
+        /// <param name="firstAnswerLine">The first Line of Answers to be in the new list</param>
+        /// <returns>A new List of Answers</returns>
+        public static List<string[]> CreateNewAttributesList(string[] firstAnswerLine)
+        {
+            List<string[]> result = new List<string[]>();
+
+            for (int i = 0; i < firstAnswerLine.Length; i++)
+            {
+                result.Add(new string[] { firstAnswerLine[i] });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Adding a new Line of Answers to an existing List of Ansersets
+        /// </summary>
+        /// <param name="appendedAnswerLine">Line of answers to add</param>
+        /// <param name="existingList">Existing list of Answersets</param>
+        /// <returns></returns>
+        public static List<string[]> CreateNewAttributesList(string[] appendedAnswerLine, List<string[]> existingList)
+        {
+            string[] newAnswerColumn;
+            //look at every set of answers
+            for (int i = 0; i < appendedAnswerLine.Length; i++)
+            {
+                newAnswerColumn = new string[existingList[i].Length + 1];
+                //copy the old answers
+                for (int j = 0; j < newAnswerColumn.Length - 1; j++)
+                {
+                    newAnswerColumn[j] = existingList[i][j];
+                }
+                //add new answer
+                newAnswerColumn[newAnswerColumn.Length - 1] = appendedAnswerLine[i];
+                //replace the old set of answers by the new one
+                existingList[i] = newAnswerColumn;
+            }
+
+            return existingList;
+        }
+
+        /// <summary>
+        /// Add a new set of answers for a new question to an existing list of sets of answers
+        /// </summary>
+        /// <param name="newSetOfAnswers">added set of answers</param>
+        /// <param name="existingList">existing list sets of answers</param>
+        /// <returns>new list sets of answers</returns>
+        public static List<string[]> AddNewSetOfAnswers(string[] newSetOfAnswers, List<string[]> existingList)
+        {
+            existingList.Add(newSetOfAnswers);
+            return existingList;
         }
         #endregion
     }
