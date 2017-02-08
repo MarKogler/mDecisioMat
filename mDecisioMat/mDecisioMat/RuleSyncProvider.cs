@@ -27,6 +27,8 @@ namespace mDecisioMat
         System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(@"RuleSets");
         private string[] availableRuleSetsName;
         private bool statusCsvFile;
+        private int numberOfQuestions;
+        private int numberOfAnswers;
 
         private bool initialized;
         
@@ -76,12 +78,14 @@ namespace mDecisioMat
             string name;
             string[] attributeHeader = new string[1]; ;
             string[] attributeTypeHeader = new string[1];
-            int numberOfQuestions;
-            int numberOfAnswers;            
-            string[,] attributes = new string[1,1];
-            string[,] tempAttributes = new string[1, 1];
 
-            foreach(System.IO.FileInfo f in ParentDirectory.GetFiles())
+            string[,] attributes = new string[1, 1];
+            string[,] tempAttributes = new string[1, 1];
+            string[] oneRow;
+
+            List<string[]> listAttributes;
+
+            foreach (System.IO.FileInfo f in ParentDirectory.GetFiles())
             {
                 indexCounter++;
             }
@@ -164,6 +168,7 @@ namespace mDecisioMat
                             break;
                         }
                     }
+
                     numberOfAnswers = lineCounter - 3;
 
                     if (attributes[attributes.GetLength(0) - 1, 0] == null)
@@ -177,10 +182,25 @@ namespace mDecisioMat
                                 attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
                             }
                         }
-
                     }
+
+                    // Convert attributes to a list -> to transfer the data.
+                    //listAttributes = attributes.Cast<string>().ToList();
+                    listAttributes = new List<string[]>();
+                    oneRow = new string[attributes.GetLength(1)];
+                    
+                    for (int matLine = 0; matLine < attributes.GetLength(0); matLine++)
+                    {
+                        for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
+                        {
+                            oneRow[matColumn] = attributes[matLine, matColumn];
+                        }
+                        listAttributes.Insert(matLine, oneRow);
+                        oneRow = new string[attributes.GetLength(1)];
+                    }
+
                     // Creat another ruleset
-                    setsOfRules[i] = new RuleSet(name, attributeHeader, attributeTypeHeader, attributes);
+                    setsOfRules[i] = new RuleSet(name, attributeHeader, attributeTypeHeader, listAttributes);
 
                     lineCounter = 0;
                     inputFile.Close();
@@ -237,10 +257,8 @@ namespace mDecisioMat
                 if (setsOfRules[i].Name == nameOfRuleSet)
                 {
                     neededRuleSet = setsOfRules[i];
-                    break;
                 }
             }
-            //string temp = "test";
             return (neededRuleSet);
         }
 

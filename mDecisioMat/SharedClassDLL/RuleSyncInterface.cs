@@ -24,50 +24,5 @@ namespace SharedClassDLL
 
         [OperationContract]
         RuleSet GetSpecificRule(string nameOfRuleSet);
-
-        //[DataContract]
-        //public class RuleSet
-        //{
-        //    [DataMember]
-        //    private string name;
-
-        //    [DataMember]
-        //    private int numberOfQuestions;
-
-        //    [DataMember]
-        //    private int numberOfAnswers;
-
-        //    [DataMember]
-        //    private string[] attributeHeader;
-
-        //    [DataMember]
-        //    private string[] attributeTypeHeader;
-
-        //    [DataMember]
-        //    private string[,] attributes; //[numberOfAnswers,numberOfQuestions]
-        //}
     }
-
-    //[DataContract()]
-    //public class RuleSet
-    //{
-    //    [DataMember]
-    //    private string name;
-
-    //    [DataMember]
-    //    private int numberOfQuestions;
-
-    //    [DataMember]
-    //    private int numberOfAnswers;
-
-    //    [DataMember]
-    //    private string[] attributeHeader;
-
-    //    [DataMember]
-    //    private string[] attributeTypeHeader;
-
-    //    [DataMember]
-    //    private string[,] attributes; //[numberOfAnswers,numberOfQuestions]
-    //}
-
 }
