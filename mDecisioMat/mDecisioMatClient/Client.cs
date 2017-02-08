@@ -86,12 +86,6 @@ namespace mDecisioMatClient
         {
             this.currentRuleSet = this.ruleInterface.GetSpecificRule(this.lbRuleSets.SelectedItem.ToString());
 
-            // Test
-            //string tempString;
-            //tempString = this.ruleInterface.GetSpecificRule(this.lbRuleSets.SelectedItem.ToString());
-            //this.tbxCurrentRuleSet.Text = tempString;
-            // ****************************************
-
             if (this.currentRuleSet != null)
             {
                 this.btnGetDecision.Enabled = true;
@@ -106,7 +100,7 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnGetDecision_Click(object sender, EventArgs e)
         {
-            this.questionWindow = new QuestionWindow(this.currentRuleSet, ref this.answerstring);
+            //this.questionWindow = new QuestionWindow(this.currentRuleSet, ref this.answerstring);
             this.dialogresult = this.questionWindow.ShowDialog();
 
             if (this.dialogresult == DialogResult.OK)
