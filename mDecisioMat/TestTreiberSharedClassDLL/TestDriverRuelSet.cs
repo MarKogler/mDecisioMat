@@ -21,9 +21,9 @@ namespace TestDriverSharedClassDLL
             string testName = "Test RuleSet";
             string[] testAttributeHeader = { "ID-Nummer", "Bezeichnung", "Marke", "Preis", "ABS" };
             string[] testAttributeTypeHeader = { "-", "-", "SD", "vonbis", "jn" };
-            List<string[]> testAttributes = RuleSet.CreateNewAttributesList(new string[] { "1", "Peugeot 206", "Peugeot", "500", "ja" });
-            testAttributes = RuleSet.CreateNewAttributesList(new string[] { "2", "Fiat Stilo", "Fiat", "1690", "ja" }, testAttributes);
-            testAttributes = RuleSet.CreateNewAttributesList(new string[] { "3", "Volkswagen T4", "Volkswagen", "2990", "nein" }, testAttributes);
+            string[,] testAttributes = { { "1", "Peugeot 206", "Peugeot", "500", "ja" },
+                                         { "2", "Fiat Stilo", "Fiat", "1690", "ja" },
+                                         { "3", "Volkswagen T4", "Volkswagen", "2990","nein"} };
             #endregion
 
             #region initialize testRuleSet
@@ -83,8 +83,10 @@ namespace TestDriverSharedClassDLL
             Console.WriteLine(testRuleSet.NumberOfAnswers.ToString());
             Console.WriteLine();
 
-            testAttributes = RuleSet.AddNewSetOfAnswers(new string[] { "nein", "nein", "nein" }, testAttributes);
-            testRuleSet.Attributes = testAttributes;
+            testRuleSet.Attributes = new string[,]{ { "1", "Peugeot 206", "Peugeot", "500", "ja" ,"nein" },
+                                                    { "2", "Fiat Stilo", "Fiat", "1690", "ja" , "nein" },
+                                                    { "3", "Volkswagen T4", "Volkswagen", "2990","nein", "nein" },
+                                                    { "4", "Audi A4", "Audi", "30790", "ja", "nein"} };
             Console.WriteLine("Attributes changed:");
             Console.WriteLine(testRuleSet.ToString());
             Console.WriteLine("Number of Questions:");
@@ -95,26 +97,6 @@ namespace TestDriverSharedClassDLL
             #endregion
 
             #region test methods
-            Console.WriteLine("Test dynamic methods:");
-
-            Console.WriteLine("Add a new line of Answers:");
-            testRuleSet.AddNewAnswerLine(new string[] { "4", "Audi A4", "Audi", "30790", "ja", "nein" });
-            Console.WriteLine(testRuleSet.ToString());
-            Console.WriteLine("Number of Questions:");
-            Console.WriteLine(testRuleSet.NumberOfQuestions.ToString());
-            Console.WriteLine("Number of Answers:");
-            Console.WriteLine(testRuleSet.NumberOfAnswers.ToString());
-            Console.WriteLine();
-
-            Console.WriteLine("Add a new set of answers:");
-            testRuleSet.AddNewQuestionWithSetOfAnswers("Allrad", "jn", new string[] { "nein", "nein", "nein", "ja" });
-            Console.WriteLine(testRuleSet.ToString());
-            Console.WriteLine("Number of Questions:");
-            Console.WriteLine(testRuleSet.NumberOfQuestions.ToString());
-            Console.WriteLine("Number of Answers:");
-            Console.WriteLine(testRuleSet.NumberOfAnswers.ToString());
-            Console.WriteLine();
-
             Console.WriteLine("Get the first Question");
             string[] firstquestion = testRuleSet.GetQuestion(0);
             for (int i = 0; i < firstquestion.Length; i++)

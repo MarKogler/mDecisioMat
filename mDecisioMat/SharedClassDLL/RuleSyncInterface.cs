@@ -23,6 +23,6 @@ namespace SharedClassDLL
         string[] GetAvailableRuleSets();
 
         [OperationContract]
-        RuleSet GetSpecificRuleSet(string nameOfRuleSet);
+        RuleSet GetSpecificRule(string nameOfRuleSet);
     }
 }

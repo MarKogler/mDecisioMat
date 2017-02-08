@@ -3,8 +3,3 @@ C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDeci
 C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.dll
 C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.pdb
 C:\Users\Martin\Documents\FH_Wels\Master\3.Semester\SWA\GitHub\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.csprojResolveAssemblyReference.cache
-D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\bin\Debug\SharedClassDLL.dll
-D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\bin\Debug\SharedClassDLL.pdb
-D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.csprojResolveAssemblyReference.cache
-D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.dll
-D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Debug\SharedClassDLL.pdb

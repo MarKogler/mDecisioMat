@@ -36,7 +36,7 @@
             this.gbDecisionMaker = new System.Windows.Forms.GroupBox();
             this.tbxAnswer = new System.Windows.Forms.TextBox();
             this.btnGetDecision = new System.Windows.Forms.Button();
-            this.rtbCurrentRuleSet = new System.Windows.Forms.RichTextBox();
+            this.tbxCurrentRuleSet = new System.Windows.Forms.TextBox();
             this.gbRuleSetSelection.SuspendLayout();
             this.gbCurrentRuleSet.SuspendLayout();
             this.gbDecisionMaker.SuspendLayout();
@@ -87,7 +87,7 @@
             // 
             // gbCurrentRuleSet
             // 
-            this.gbCurrentRuleSet.Controls.Add(this.rtbCurrentRuleSet);
+            this.gbCurrentRuleSet.Controls.Add(this.tbxCurrentRuleSet);
             this.gbCurrentRuleSet.Location = new System.Drawing.Point(12, 246);
             this.gbCurrentRuleSet.Name = "gbCurrentRuleSet";
             this.gbCurrentRuleSet.Size = new System.Drawing.Size(539, 207);
@@ -127,16 +127,15 @@
             this.btnGetDecision.UseVisualStyleBackColor = true;
             this.btnGetDecision.Click += new System.EventHandler(this.btnGetDecision_Click);
             // 
-            // rtbCurrentRuleSet
+            // tbxCurrentRuleSet
             // 
-            this.rtbCurrentRuleSet.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbCurrentRuleSet.Location = new System.Drawing.Point(6, 19);
-            this.rtbCurrentRuleSet.Name = "rtbCurrentRuleSet";
-            this.rtbCurrentRuleSet.ReadOnly = true;
-            this.rtbCurrentRuleSet.Size = new System.Drawing.Size(527, 182);
-            this.rtbCurrentRuleSet.TabIndex = 3;
-            this.rtbCurrentRuleSet.Text = "";
-            this.rtbCurrentRuleSet.WordWrap = false;
+            this.tbxCurrentRuleSet.Location = new System.Drawing.Point(6, 19);
+            this.tbxCurrentRuleSet.Multiline = true;
+            this.tbxCurrentRuleSet.Name = "tbxCurrentRuleSet";
+            this.tbxCurrentRuleSet.ReadOnly = true;
+            this.tbxCurrentRuleSet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxCurrentRuleSet.Size = new System.Drawing.Size(527, 182);
+            this.tbxCurrentRuleSet.TabIndex = 2;
             // 
             // Client
             // 
@@ -151,6 +150,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Client_FormClosing);
             this.gbRuleSetSelection.ResumeLayout(false);
             this.gbCurrentRuleSet.ResumeLayout(false);
+            this.gbCurrentRuleSet.PerformLayout();
             this.gbDecisionMaker.ResumeLayout(false);
             this.gbDecisionMaker.PerformLayout();
             this.ResumeLayout(false);
@@ -167,7 +167,7 @@
         private System.Windows.Forms.GroupBox gbDecisionMaker;
         private System.Windows.Forms.Button btnGetDecision;
         private System.Windows.Forms.TextBox tbxAnswer;
-        private System.Windows.Forms.RichTextBox rtbCurrentRuleSet;
+        private System.Windows.Forms.TextBox tbxCurrentRuleSet;
     }
 }
 
