@@ -70,20 +70,21 @@ namespace mDecisioMat
         private bool GetDataFromCsvRuleSet()
         {
             string line;
-            char[] saparators = new char[] { ';', ',' };
+            char[] saparators = new char[] { ';' };
             string[] separatedLine;
             int lineCounter = 0;
             int indexCounter = 0;
 
             string name;
-            string[] attributeHeader = new string[1]; ;
+            string[] attributeHeader = new string[1];
             string[] attributeTypeHeader = new string[1];
 
             string[,] attributes = new string[1, 1];
             string[,] tempAttributes = new string[1, 1];
             string[] oneColumn;
 
-            List<string[]> listAttributes;
+            List<string[]> listAttributes = null;
+            bool listCreated = false;
 
             foreach (System.IO.FileInfo f in parentDirectory.GetFiles())
             {
@@ -123,80 +124,85 @@ namespace mDecisioMat
                     {
                         // Whith each line, which is read in the lineCounter is increased.
                         lineCounter++;
-                        if (line != null)
+                        //if (line != null)
+                        //{
+                        separatedLine = line.Split(saparators);
+
+                        if (lineCounter ==2)
                         {
-                            separatedLine = line.Split(saparators);
-
-                            if (lineCounter ==2)
-                            {
-                                attributeHeader = separatedLine;
-                            }
-                            if (lineCounter == 3)
-                            {
-                                attributeTypeHeader = separatedLine;
-                            }
-                            if (lineCounter == 4)
-                            {
-                                numberOfQuestions = (separatedLine.Length - 2);
-                                attributes = new string[1, separatedLine.Length - 2];
-                            }
-                            if (lineCounter >= 4)
-                            {
-                                for (int matLine = attributes.GetLength(0) - 1; matLine < attributes.GetLength(0); matLine++)
-                                {
-                                    for (int matColumn = 0; matColumn < attributes.GetLength(1); matColumn++)
-                                    {
-                                        attributes[matLine, matColumn] = separatedLine[matColumn];
-                                    }
-                                }
-                                tempAttributes = attributes;
-
-                                // Expand rows in attributes.
-                                attributes = new string[tempAttributes.GetLength(0) + 1, tempAttributes.GetLength(1)];
-
-                                for (int matLine = 0; matLine < tempAttributes.GetLength(0); matLine++)
-                                {
-                                    for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
-                                    {
-                                        attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
-                                    }
-                                }
-                            }
+                            attributeHeader = separatedLine;
                         }
-                        else
-                        {                        
-                            break;
+                        if (lineCounter == 3)
+                        {
+                            attributeTypeHeader = separatedLine;
                         }
+                        if (lineCounter == 4)
+                        {
+                            numberOfQuestions = (separatedLine.Length - 2);
+                            //attributes = new string[1, separatedLine.Length - 2];
+
+                        }
+                        if (lineCounter >= 4)
+                        {
+                            if (listAttributes == null)
+                            {
+                                listAttributes = RuleSet.CreateNewAttributesList(separatedLine);
+                            }
+                            else
+                            {
+                                listAttributes = RuleSet.CreateNewAttributesList(separatedLine, listAttributes);
+                            }
+
+                            //for (int matLine = attributes.GetLength(0) - 1; matLine < attributes.GetLength(0); matLine++)
+                            //{
+                            //    for (int matColumn = 0; matColumn < attributes.GetLength(1); matColumn++)
+                            //    {
+                            //        attributes[matLine, matColumn] = separatedLine[matColumn];
+                            //    }
+                            //}
+                            //tempAttributes = attributes;
+
+                            //// Expand rows in attributes.
+                            //attributes = new string[tempAttributes.GetLength(0) + 1, tempAttributes.GetLength(1)];
+
+                            //for (int matLine = 0; matLine < tempAttributes.GetLength(0); matLine++)
+                            //{
+                            //    for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
+                            //    {
+                            //        attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
+                            //    }
+                            //}
+                        }                       
                     }
 
-                    numberOfAnswers = lineCounter - 3;
+                    //numberOfAnswers = lineCounter - 3;
 
-                    if (attributes[attributes.GetLength(0) - 1, 0] == null)
-                    {
-                        attributes = new string[attributes.GetLength(0) - 1, attributes.GetLength(1)];
+                    //if (attributes[attributes.GetLength(0) - 1, 0] == null)
+                    //{
+                    //    attributes = new string[attributes.GetLength(0) - 1, attributes.GetLength(1)];
 
-                        for (int matLine = 0; matLine < tempAttributes.GetLength(0); matLine++)
-                        {
-                            for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
-                            {
-                                attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
-                            }
-                        }
-                    }
+                    //    for (int matLine = 0; matLine < tempAttributes.GetLength(0); matLine++)
+                    //    {
+                    //        for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
+                    //        {
+                    //            attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
+                    //        }
+                    //    }
+                    //}
 
-                    // Convert attributes to a list -> to transfer the data.
-                    //listAttributes = attributes.Cast<string>().ToList();
-                    listAttributes = new List<string[]>();
+                    //// Convert attributes to a list -> to transfer the data.
+                    ////listAttributes = attributes.Cast<string>().ToList();
+                    //listAttributes = new List<string[]>();
 
-                    for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
-                    {
-                        oneColumn = new string[attributes.GetLength(0)];
-                        for(int matLine = 0; matLine < attributes.GetLength(0); matLine++)
-                        {
-                            oneColumn[matLine] = attributes[matLine, matColumn];
-                        }
-                        listAttributes.Add(oneColumn);
-                    }
+                    //for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
+                    //{
+                    //    oneColumn = new string[attributes.GetLength(0)];
+                    //    for(int matLine = 0; matLine < attributes.GetLength(0); matLine++)
+                    //    {
+                    //        oneColumn[matLine] = attributes[matLine, matColumn];
+                    //    }
+                    //    listAttributes.Add(oneColumn);
+                    //}
 
                     // Creat another ruleset
                     setsOfRules[i] = new RuleSet(name, attributeHeader, attributeTypeHeader, listAttributes);

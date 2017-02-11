@@ -254,7 +254,7 @@ namespace SharedClassDLL
         }
 
         /// <summary>
-        /// Adding a new Line of Answers to an existing List of Ansersets
+        /// Adding a new Line of Answers to an existing List of Answersets
         /// </summary>
         /// <param name="appendedAnswerLine">Line of answers to add</param>
         /// <param name="existingList">Existing list of Answersets</param>
