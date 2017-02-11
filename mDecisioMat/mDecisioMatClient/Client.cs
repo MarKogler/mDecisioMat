@@ -27,8 +27,8 @@ namespace mDecisioMatClient
         private string[] availableRuleSets;
         private RuleSet currentRuleSet;
         private QuestionWindow questionWindow;
-        private string answerstring;
-        private DialogResult dialogresult;
+        private string answerString;
+        private DialogResult dialogResult;
         #endregion
 
         #region Constructor
@@ -100,12 +100,12 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnGetDecision_Click(object sender, EventArgs e)
         {
-            //this.questionWindow = new QuestionWindow(this.currentRuleSet, ref this.answerstring);
-            this.dialogresult = this.questionWindow.ShowDialog();
+            this.questionWindow = new QuestionWindow(this.currentRuleSet, ref this.answerString);
+            this.dialogResult = this.questionWindow.ShowDialog();
 
-            if (this.dialogresult == DialogResult.OK)
+            if (this.dialogResult == DialogResult.OK)
             {
-                this.tbxAnswer.Text = this.answerstring;
+                this.tbxAnswer.Text = this.answerString;
             }
             else
             {

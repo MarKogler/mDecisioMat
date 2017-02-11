@@ -24,7 +24,7 @@ namespace mDecisioMat
         // Beachte wo sich der Dateipfad nach einer Installation des Programmes an anderem Rechner befindet.
         // Suche im Ordner nach allen CSVDateien -> In Schleife alle öffnen und in Array in erstellen
         private string sFilePathRuleSet = @"RuleSets\M_Solution_Regelwerk_csv.csv";
-        System.IO.DirectoryInfo ParentDirectory = new System.IO.DirectoryInfo(@"RuleSets");
+        System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(@"RuleSets");
         private string[] availableRuleSetsName;
         private bool statusCsvFile;
         private int numberOfQuestions;
@@ -86,7 +86,7 @@ namespace mDecisioMat
             List<string[]> listAttributes = null;
             bool listCreated = false;
 
-            foreach (System.IO.FileInfo f in ParentDirectory.GetFiles())
+            foreach (System.IO.FileInfo f in parentDirectory.GetFiles())
             {
                 indexCounter++;
             }
@@ -99,7 +99,7 @@ namespace mDecisioMat
 
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("The following rulesets were found and read in: ");
-            foreach (System.IO.FileInfo f in ParentDirectory.GetFiles())
+            foreach (System.IO.FileInfo f in parentDirectory.GetFiles())
             {
                 availableRuleSetsName[indexCounter] = f.Name;
                 Console.WriteLine("Ruleset {0}: " + f.Name, (indexCounter + 1));
