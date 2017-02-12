@@ -71,7 +71,7 @@ namespace mDecisioMat
         {
             bool errorOccured;
             string line;
-            char[] saparators = new char[] { ';' };
+            char[] saparators = new char[] { ';'};
             string[] separatedLine;
             int lineCounter = 0;
             int indexCounter = 0;
@@ -104,6 +104,7 @@ namespace mDecisioMat
                 indexCounter++;
             }
 
+            errorOccured = false;
             for (int i = 0; i < indexCounter; i++)
             {
                 try
@@ -169,7 +170,6 @@ namespace mDecisioMat
                     errorOccured = true;
                 }
             }
-            errorOccured = false;
             return (errorOccured);
         }
         #endregion
