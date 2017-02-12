@@ -116,6 +116,7 @@ namespace mDecisioMat
                     line = inputFile.ReadLine();
                     separatedLine = line.Split(saparators);
                     name = separatedLine[1];
+                    listAttributes = null;
 
                     lineCounter++;
 

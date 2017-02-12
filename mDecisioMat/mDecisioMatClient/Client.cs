@@ -45,6 +45,13 @@ namespace mDecisioMatClient
         }
         #endregion
 
+        public string AnswerString
+        {
+            set
+            {
+                this.answerString = value;
+            }
+        }
         /// <summary>
         /// Eventhandler for the closing event of the Main Windeow to close the communication as well
         /// </summary>
@@ -100,7 +107,7 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnGetDecision_Click(object sender, EventArgs e)
         {
-            this.questionWindow = new QuestionWindow(this.currentRuleSet, ref this.answerString);
+            this.questionWindow = new QuestionWindow(this.currentRuleSet, this);
             this.dialogResult = this.questionWindow.ShowDialog();
 
             if (this.dialogResult == DialogResult.OK)
@@ -109,7 +116,7 @@ namespace mDecisioMatClient
             }
             else
             {
-                this.tbxAnswer.Text = "";
+                this.tbxAnswer.Text = "Decision process canceled";
             }
         }
     }
