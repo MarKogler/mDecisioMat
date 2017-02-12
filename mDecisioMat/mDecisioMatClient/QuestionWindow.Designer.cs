@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.gbQuestion = new System.Windows.Forms.GroupBox();
-            this.clbAnswers = new System.Windows.Forms.CheckedListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.nudLowerLimit = new System.Windows.Forms.NumericUpDown();
-            this.nudUpperLimit = new System.Windows.Forms.NumericUpDown();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnSkipAttribute = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSkipAttribute = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.nudUpperLimit = new System.Windows.Forms.NumericUpDown();
+            this.nudLowerLimit = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.clbAnswers = new System.Windows.Forms.CheckedListBox();
             this.gbQuestion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLowerLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUpperLimit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLowerLimit)).BeginInit();
             this.SuspendLayout();
             // 
             // gbQuestion
@@ -59,56 +59,15 @@
             this.gbQuestion.TabStop = false;
             this.gbQuestion.Text = "Question";
             // 
-            // clbAnswers
+            // btnCancel
             // 
-            this.clbAnswers.FormattingEnabled = true;
-            this.clbAnswers.Location = new System.Drawing.Point(6, 19);
-            this.clbAnswers.Name = "clbAnswers";
-            this.clbAnswers.Size = new System.Drawing.Size(255, 94);
-            this.clbAnswers.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 121);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Lower Limit:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 147);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Upper Limit";
-            // 
-            // nudLowerLimit
-            // 
-            this.nudLowerLimit.Location = new System.Drawing.Point(141, 119);
-            this.nudLowerLimit.Name = "nudLowerLimit";
-            this.nudLowerLimit.Size = new System.Drawing.Size(120, 20);
-            this.nudLowerLimit.TabIndex = 1;
-            this.nudLowerLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // nudUpperLimit
-            // 
-            this.nudUpperLimit.Location = new System.Drawing.Point(141, 145);
-            this.nudUpperLimit.Name = "nudUpperLimit";
-            this.nudUpperLimit.Size = new System.Drawing.Size(120, 20);
-            this.nudUpperLimit.TabIndex = 1;
-            this.nudUpperLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(6, 173);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(80, 35);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnCancel.Location = new System.Drawing.Point(181, 173);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(80, 35);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSkipAttribute
             // 
@@ -120,28 +79,74 @@
             this.btnSkipAttribute.UseVisualStyleBackColor = true;
             this.btnSkipAttribute.Click += new System.EventHandler(this.btnSkipAttribute_Click);
             // 
-            // btnCancel
+            // btnOK
             // 
-            this.btnCancel.Location = new System.Drawing.Point(181, 173);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(80, 35);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnOK.Location = new System.Drawing.Point(6, 173);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(80, 35);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // nudUpperLimit
+            // 
+            this.nudUpperLimit.Location = new System.Drawing.Point(141, 145);
+            this.nudUpperLimit.Name = "nudUpperLimit";
+            this.nudUpperLimit.Size = new System.Drawing.Size(120, 20);
+            this.nudUpperLimit.TabIndex = 1;
+            this.nudUpperLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // nudLowerLimit
+            // 
+            this.nudLowerLimit.Location = new System.Drawing.Point(141, 119);
+            this.nudLowerLimit.Name = "nudLowerLimit";
+            this.nudLowerLimit.Size = new System.Drawing.Size(120, 20);
+            this.nudLowerLimit.TabIndex = 1;
+            this.nudLowerLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudLowerLimit.ValueChanged += new System.EventHandler(this.nudLowerLimit_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 147);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Upper Limit";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Lower Limit:";
+            // 
+            // clbAnswers
+            // 
+            this.clbAnswers.FormattingEnabled = true;
+            this.clbAnswers.Location = new System.Drawing.Point(6, 19);
+            this.clbAnswers.Name = "clbAnswers";
+            this.clbAnswers.Size = new System.Drawing.Size(255, 94);
+            this.clbAnswers.TabIndex = 1;
+            this.clbAnswers.SelectedIndexChanged += new System.EventHandler(this.clbAnswers_SelectedIndexChanged);
             // 
             // QuestionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 234);
+            this.ClientSize = new System.Drawing.Size(284, 232);
             this.Controls.Add(this.gbQuestion);
+            this.MaximumSize = new System.Drawing.Size(300, 270);
+            this.MinimumSize = new System.Drawing.Size(300, 270);
             this.Name = "QuestionWindow";
             this.Text = "QuestionWindow";
             this.gbQuestion.ResumeLayout(false);
             this.gbQuestion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLowerLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUpperLimit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLowerLimit)).EndInit();
             this.ResumeLayout(false);
 
         }

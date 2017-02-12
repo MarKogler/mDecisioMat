@@ -172,27 +172,48 @@ namespace SharedClassDLL
             string contentstring = this.Name + Environment.NewLine;
 
             //Add attributeHeader
-            for (int i = 0; i < this.AttributeHeader.Length - 1; i++)
+            for (int i = 0; i < this.AttributeHeader.Length; i++)
             {
-                contentstring = contentstring + String.Format("{0,-50}", this.AttributeHeader[i]);
+                if (this.AttributeHeader[i].Length <= 30)
+                {
+                    contentstring = contentstring + String.Format("{0,-30}", this.AttributeHeader[i]);
+                }
+                else
+                {
+                    contentstring = contentstring + String.Format("{0,-27}...", this.AttributeHeader[i].Substring(0, 27));
+                }
             }
-            contentstring = contentstring + String.Format("{0,-50}", this.AttributeHeader[this.AttributeHeader.Length - 1]) + Environment.NewLine;
+            contentstring = contentstring + Environment.NewLine;
 
             //Add attributeTypeHeader
-            for (int i = 0; i < this.AttributeTypeHeader.Length - 1; i++)
+            for (int i = 0; i < this.AttributeTypeHeader.Length; i++)
             {
-                contentstring = contentstring + String.Format("{0,-50}", this.AttributeTypeHeader[i]);
+                if (this.AttributeTypeHeader[i].Length <= 30)
+                {
+                    contentstring = contentstring + String.Format("{0,-30}", this.AttributeTypeHeader[i]);
+                }
+                else
+                {
+                    contentstring = contentstring + String.Format("{0,-27}...", this.AttributeTypeHeader[i].Substring(0,27));
+                }
             }
-            contentstring = contentstring + String.Format("{0,-50}", this.AttributeTypeHeader[this.AttributeTypeHeader.Length - 1]) + Environment.NewLine;
+            contentstring = contentstring + Environment.NewLine;
 
             //Add attributes
             for (int i = 0; i < this.NumberOfAnswers; i++)
             {
-                for (int j = 0; j < this.NumberOfQuestions + 1; j++)
+                for (int j = 0; j < this.NumberOfQuestions + 2; j++)
                 {
-                    contentstring = contentstring + String.Format("{0,-50}", this.Attributes[j][i]);
+                    if (this.Attributes[j][i].Length <= 30)
+                    {
+                        contentstring = contentstring + String.Format("{0,-30}", this.Attributes[j][i]);
+                    }
+                    else
+                    {
+                        contentstring = contentstring + String.Format("{0,-27}...", this.Attributes[j][i].Substring(0,27));
+                    }
                 }
-                contentstring = contentstring + String.Format("{0,-50}", this.Attributes[this.Attributes.Count - 1][i]) + Environment.NewLine;
+                contentstring = contentstring + Environment.NewLine;
             }
 
             return contentstring;

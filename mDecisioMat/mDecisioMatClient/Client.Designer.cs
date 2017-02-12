@@ -33,10 +33,10 @@
             this.btnSelectRuleSet = new System.Windows.Forms.Button();
             this.btnGetAvailableRuleSets = new System.Windows.Forms.Button();
             this.gbCurrentRuleSet = new System.Windows.Forms.GroupBox();
+            this.rtbCurrentRuleSet = new System.Windows.Forms.RichTextBox();
             this.gbDecisionMaker = new System.Windows.Forms.GroupBox();
             this.tbxAnswer = new System.Windows.Forms.TextBox();
             this.btnGetDecision = new System.Windows.Forms.Button();
-            this.rtbCurrentRuleSet = new System.Windows.Forms.RichTextBox();
             this.gbRuleSetSelection.SuspendLayout();
             this.gbCurrentRuleSet.SuspendLayout();
             this.gbDecisionMaker.SuspendLayout();
@@ -95,6 +95,17 @@
             this.gbCurrentRuleSet.TabStop = false;
             this.gbCurrentRuleSet.Text = "Current Rule Set";
             // 
+            // rtbCurrentRuleSet
+            // 
+            this.rtbCurrentRuleSet.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbCurrentRuleSet.Location = new System.Drawing.Point(6, 19);
+            this.rtbCurrentRuleSet.Name = "rtbCurrentRuleSet";
+            this.rtbCurrentRuleSet.ReadOnly = true;
+            this.rtbCurrentRuleSet.Size = new System.Drawing.Size(527, 182);
+            this.rtbCurrentRuleSet.TabIndex = 3;
+            this.rtbCurrentRuleSet.Text = "";
+            this.rtbCurrentRuleSet.WordWrap = false;
+            // 
             // gbDecisionMaker
             // 
             this.gbDecisionMaker.Controls.Add(this.tbxAnswer);
@@ -127,25 +138,16 @@
             this.btnGetDecision.UseVisualStyleBackColor = true;
             this.btnGetDecision.Click += new System.EventHandler(this.btnGetDecision_Click);
             // 
-            // rtbCurrentRuleSet
-            // 
-            this.rtbCurrentRuleSet.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbCurrentRuleSet.Location = new System.Drawing.Point(6, 19);
-            this.rtbCurrentRuleSet.Name = "rtbCurrentRuleSet";
-            this.rtbCurrentRuleSet.ReadOnly = true;
-            this.rtbCurrentRuleSet.Size = new System.Drawing.Size(527, 182);
-            this.rtbCurrentRuleSet.TabIndex = 3;
-            this.rtbCurrentRuleSet.Text = "";
-            this.rtbCurrentRuleSet.WordWrap = false;
-            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 465);
+            this.ClientSize = new System.Drawing.Size(559, 462);
             this.Controls.Add(this.gbDecisionMaker);
             this.Controls.Add(this.gbCurrentRuleSet);
             this.Controls.Add(this.gbRuleSetSelection);
+            this.MaximumSize = new System.Drawing.Size(575, 500);
+            this.MinimumSize = new System.Drawing.Size(575, 500);
             this.Name = "Client";
             this.Text = "Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Client_FormClosing);
