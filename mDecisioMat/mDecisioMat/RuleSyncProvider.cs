@@ -13,7 +13,8 @@ namespace mDecisioMat
 {
     /// <summary>
     /// Chose the mode sigleton.
-    /// Class converter is for 
+    /// In the RuleSyncProvider.cs all CSV-files from the folder @"RuleSets" are read in. The data from the files are stored in
+    /// class variable setsOfRules. 
     /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class RuleSyncProvider : SharedClassDLL.RuleSyncInterface
@@ -21,19 +22,15 @@ namespace mDecisioMat
 
         #region Membervariables
 
-        // Beachte wo sich der Dateipfad nach einer Installation des Programmes an anderem Rechner befindet.
-        // Suche im Ordner nach allen CSVDateien -> In Schleife alle öffnen und in Array in erstellen
-        private string sFilePathRuleSet = @"RuleSets\M_Solution_Regelwerk_csv.csv";
+        private string sFilePathRuleSet;
         System.IO.DirectoryInfo parentDirectory = new System.IO.DirectoryInfo(@"RuleSets");
         private string[] availableRuleSetsName;
         private bool statusCsvFile;
         private int numberOfQuestions;
-        private int numberOfAnswers;
 
         private bool initialized;
         
         // Variable for a new ruleset
-        // Mache Variable zum Array
         private RuleSet[] setsOfRules;
         #endregion
         
@@ -46,18 +43,21 @@ namespace mDecisioMat
         {
             Console.WriteLine("Msolutions (C)");
             Console.WriteLine("Server started!" + Environment.NewLine + Environment.NewLine);
-
-
+            
             // Read data from CSV-file
             Console.WriteLine("Ruleset (data) read in at " + DateTime.Now);
-
             statusCsvFile = GetDataFromCsvRuleSet();
-            if (!statusCsvFile)
-            {
-                Console.WriteLine("An error occured during reading data from the CSV-File!");
-            }
+            Console.WriteLine(Environment.NewLine);
 
-            initialized = false;
+            if (statusCsvFile == true)
+            {
+                Console.WriteLine("All other files are read in successfully.");
+            }
+            else
+            {
+                Console.WriteLine("All files are read in successfully.");
+            }
+            initialized = true;
         }
         #endregion
 
@@ -69,36 +69,34 @@ namespace mDecisioMat
         /// <returns></returns>
         private bool GetDataFromCsvRuleSet()
         {
+            bool errorOccured;
             string line;
-            char[] saparators = new char[] { ';' };
+            char[] saparators = new char[] { ';'};
             string[] separatedLine;
             int lineCounter = 0;
             int indexCounter = 0;
 
             string name;
-            string[] attributeHeader = new string[1];
-            string[] attributeTypeHeader = new string[1];
-
-            string[,] attributes = new string[1, 1];
-            string[,] tempAttributes = new string[1, 1];
-            string[] oneColumn;
-
+            string[] attributeHeader = null;
+            string[] attributeTypeHeader = null;
             List<string[]> listAttributes = null;
-            bool listCreated = false;
 
+            // Count how many CSV-files have to be read. 
             foreach (System.IO.FileInfo f in parentDirectory.GetFiles())
             {
                 indexCounter++;
             }
 
+            // Store the names of the available CSV-files.
             availableRuleSetsName = new string[indexCounter];
+            // For each CSV-file one enty in the variable setsOfRules is greated.
             setsOfRules = new RuleSet[indexCounter];
 
             // Reset the indexCounter
             indexCounter = 0;
 
             Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("The following rulesets were found and read in: ");
+            Console.WriteLine("The following rulesets were found: ");
             foreach (System.IO.FileInfo f in parentDirectory.GetFiles())
             {
                 availableRuleSetsName[indexCounter] = f.Name;
@@ -106,6 +104,7 @@ namespace mDecisioMat
                 indexCounter++;
             }
 
+            errorOccured = false;
             for (int i = 0; i < indexCounter; i++)
             {
                 try
@@ -124,23 +123,25 @@ namespace mDecisioMat
                     {
                         // Whith each line, which is read in the lineCounter is increased.
                         lineCounter++;
-                        //if (line != null)
-                        //{
+
                         separatedLine = line.Split(saparators);
 
+                        // Store the attributeHeader from line 2.
                         if (lineCounter ==2)
                         {
+                            attributeHeader = new string[separatedLine.Length];
                             attributeHeader = separatedLine;
                         }
+                        // Store the attributeTypeHeader from line 2.
                         if (lineCounter == 3)
                         {
+                            attributeTypeHeader = new string[separatedLine.Length];
                             attributeTypeHeader = separatedLine;
                         }
+                        // Store all attributes.
                         if (lineCounter == 4)
                         {
                             numberOfQuestions = (separatedLine.Length - 2);
-                            //attributes = new string[1, separatedLine.Length - 2];
-
                         }
                         if (lineCounter >= 4)
                         {
@@ -152,57 +153,8 @@ namespace mDecisioMat
                             {
                                 listAttributes = RuleSet.CreateNewAttributesList(separatedLine, listAttributes);
                             }
-
-                            //for (int matLine = attributes.GetLength(0) - 1; matLine < attributes.GetLength(0); matLine++)
-                            //{
-                            //    for (int matColumn = 0; matColumn < attributes.GetLength(1); matColumn++)
-                            //    {
-                            //        attributes[matLine, matColumn] = separatedLine[matColumn];
-                            //    }
-                            //}
-                            //tempAttributes = attributes;
-
-                            //// Expand rows in attributes.
-                            //attributes = new string[tempAttributes.GetLength(0) + 1, tempAttributes.GetLength(1)];
-
-                            //for (int matLine = 0; matLine < tempAttributes.GetLength(0); matLine++)
-                            //{
-                            //    for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
-                            //    {
-                            //        attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
-                            //    }
-                            //}
                         }                       
                     }
-
-                    //numberOfAnswers = lineCounter - 3;
-
-                    //if (attributes[attributes.GetLength(0) - 1, 0] == null)
-                    //{
-                    //    attributes = new string[attributes.GetLength(0) - 1, attributes.GetLength(1)];
-
-                    //    for (int matLine = 0; matLine < tempAttributes.GetLength(0); matLine++)
-                    //    {
-                    //        for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
-                    //        {
-                    //            attributes[matLine, matColumn] = tempAttributes[matLine, matColumn];
-                    //        }
-                    //    }
-                    //}
-
-                    //// Convert attributes to a list -> to transfer the data.
-                    ////listAttributes = attributes.Cast<string>().ToList();
-                    //listAttributes = new List<string[]>();
-
-                    //for (int matColumn = 0; matColumn < tempAttributes.GetLength(1); matColumn++)
-                    //{
-                    //    oneColumn = new string[attributes.GetLength(0)];
-                    //    for(int matLine = 0; matLine < attributes.GetLength(0); matLine++)
-                    //    {
-                    //        oneColumn[matLine] = attributes[matLine, matColumn];
-                    //    }
-                    //    listAttributes.Add(oneColumn);
-                    //}
 
                     // Creat another ruleset
                     setsOfRules[i] = new RuleSet(name, attributeHeader, attributeTypeHeader, listAttributes);
@@ -210,13 +162,15 @@ namespace mDecisioMat
                     lineCounter = 0;
                     inputFile.Close();
                 }
-                catch
+                catch 
                 {
-                    // If an error occurs.
-                    return false;
+                    // If one file is not read in successfully an error occurs. All other files are read in.
+                    Console.WriteLine(Environment.NewLine);
+                    Console.WriteLine("Following file was not read in successfully: {0}", availableRuleSetsName[i].ToString());
+                    errorOccured = true;
                 }
             }
-            return true;
+            return (errorOccured);
         }
         #endregion
 
@@ -232,7 +186,7 @@ namespace mDecisioMat
         }
 
         /// <summary>
-        /// Gives back the name of each availabel rulesets.
+        /// Gives back the name of each availabel ruleset.
         /// </summary>
         /// <returns>Returns all available rulesets.</returns>
         public string[] GetAvailableRuleSets()
