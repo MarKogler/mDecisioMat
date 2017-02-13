@@ -1,0 +1,4 @@
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\bin\Release\SharedClassDLL.dll
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\bin\Release\SharedClassDLL.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Release\SharedClassDLL.dll
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\SharedClassDLL\obj\Release\SharedClassDLL.pdb

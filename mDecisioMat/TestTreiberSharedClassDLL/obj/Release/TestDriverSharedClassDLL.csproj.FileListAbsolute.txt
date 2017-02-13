@@ -1,0 +1,8 @@
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Release\TestTreiberSharedClassDLL.exe.config
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Release\TestTreiberSharedClassDLL.exe
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Release\TestTreiberSharedClassDLL.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Release\SharedClassDLL.dll
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\bin\Release\SharedClassDLL.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\obj\Release\TestDriverSharedClassDLL.csprojResolveAssemblyReference.cache
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\obj\Release\TestTreiberSharedClassDLL.exe
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\TestTreiberSharedClassDLL\obj\Release\TestTreiberSharedClassDLL.pdb

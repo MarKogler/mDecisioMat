@@ -1,0 +1,8 @@
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Release\mDecisioMat.exe.config
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Release\mDecisioMat.exe
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Release\mDecisioMat.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Release\SharedClassDLL.dll
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\bin\Release\SharedClassDLL.pdb
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\obj\Release\mDecisioMatServer.csprojResolveAssemblyReference.cache
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\obj\Release\mDecisioMat.exe
+D:\Martin_Dateien\FH\Github\mDecisioMat\mDecisioMat\mDecisioMat\obj\Release\mDecisioMat.pdb
