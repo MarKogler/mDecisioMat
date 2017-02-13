@@ -58,6 +58,7 @@ namespace mDecisioMatClient
         }
         #endregion
 
+        #region eventhandler
         /// <summary>
         /// Eventhandler for the closing event of the Main Windeow to close the communication as well
         /// </summary>
@@ -160,5 +161,6 @@ namespace mDecisioMatClient
                 this.tbxAnswer.Text = "Decision process canceled";
             }
         }
+        #endregion
     }
 }
