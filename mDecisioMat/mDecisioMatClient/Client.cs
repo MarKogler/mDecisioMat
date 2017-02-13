@@ -45,6 +45,10 @@ namespace mDecisioMatClient
         }
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// Property to write to the private variable answerString
+        /// </summary>
         public string AnswerString
         {
             set
@@ -52,6 +56,9 @@ namespace mDecisioMatClient
                 this.answerString = value;
             }
         }
+        #endregion
+
+        #region eventhandler
         /// <summary>
         /// Eventhandler for the closing event of the Main Windeow to close the communication as well
         /// </summary>
@@ -70,17 +77,36 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnGetAvailableRuleSets_Click(object sender, EventArgs e)
         {
-            this.availableRuleSets = ruleInterface.GetAvailableRuleSets();
-            if (this.availableRuleSets.Length > 0)
+            //Get available RuleSets
+            try
+            {
+                this.availableRuleSets = ruleInterface.GetAvailableRuleSets();
+            }
+            catch
+            {
+                this.availableRuleSets = null;
+                this.rtbCurrentRuleSet.Text = "Server Connection Error";
+            }
+            //If there are RuleSets available List them and enable neccessary control elements
+            if (this.availableRuleSets != null)
             {
                 this.lbRuleSets.Enabled = true;
+
                 this.lbRuleSets.Items.Clear();
                 for (int i = 0; i < this.availableRuleSets.Length; i++)
                 {
                     this.lbRuleSets.Items.Add(this.availableRuleSets[i]);
                 }
+                //Select Index so there is never no Index Selected
                 this.lbRuleSets.SelectedIndex = 0;
                 this.btnSelectRuleSet.Enabled = true;
+            }
+            else
+            {
+                //disable harmful controls if there are no RuleSets Available
+                this.lbRuleSets.Enabled = false;
+                this.btnSelectRuleSet.Enabled = false;
+                this.btnGetDecision.Enabled = false;
             }
         }
 
@@ -91,12 +117,26 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnSelectRuleSet_Click(object sender, EventArgs e)
         {
-            this.currentRuleSet = this.ruleInterface.GetSpecificRuleSet(this.lbRuleSets.SelectedItem.ToString());
+            //Get chosen RuleSet
+            try
+            {
+                this.currentRuleSet = this.ruleInterface.GetSpecificRuleSet(this.lbRuleSets.SelectedItem.ToString());
+            }
+            catch
+            {
+                this.currentRuleSet = null;
+                this.rtbCurrentRuleSet.Text = "Server Connection Error";
+            }
 
+            //Make sure RuleSet is valid
             if (this.currentRuleSet != null)
             {
                 this.btnGetDecision.Enabled = true;
                 this.rtbCurrentRuleSet.Text = this.currentRuleSet.ToString();
+            }
+            else
+            {
+                this.btnGetDecision.Enabled = false;
             }
         }
 
@@ -107,9 +147,11 @@ namespace mDecisioMatClient
         /// <param name="e"></param>
         private void btnGetDecision_Click(object sender, EventArgs e)
         {
+            //Ask Questions
             this.questionWindow = new QuestionWindow(this.currentRuleSet, this);
             this.dialogResult = this.questionWindow.ShowDialog();
 
+            //Display result
             if (this.dialogResult == DialogResult.OK)
             {
                 this.tbxAnswer.Text = this.answerString;
@@ -119,5 +161,6 @@ namespace mDecisioMatClient
                 this.tbxAnswer.Text = "Decision process canceled";
             }
         }
+        #endregion
     }
 }
