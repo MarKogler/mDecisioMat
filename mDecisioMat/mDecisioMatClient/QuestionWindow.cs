@@ -31,6 +31,11 @@ namespace mDecisioMatClient
         #endregion
 
         #region Contructor
+        /// <summary>
+        /// Standard Constructor
+        /// </summary>
+        /// <param name="currentRuleSet">RuleSet to be asked</param>
+        /// <param name="mainWindow">Reference to main Window for response</param>
         public QuestionWindow(RuleSet currentRuleSet, Client mainWindow)
         {
             InitializeComponent();
@@ -69,22 +74,33 @@ namespace mDecisioMatClient
         /// <param name="questionNumber">number of actual question</param>
         private void AskQuestion(int questionNumber)
         {
+            //The sequence ends automatically if there is no further question to be asked
             if (questionNumber < this.currentRuleSet.NumberOfQuestions)
             {
+                //Get the actual question
                 this.actualQuestion = this.currentRuleSet.GetQuestion(questionNumber);
+                //Get if the question needs numeric input
                 this.vonbisQuestion = this.actualQuestion[1] == "vonbis";
+                //separate answers
                 this.actualAnswerSet = new string[this.actualQuestion.Length - 2];
-                this.gbQuestion.Text = this.actualQuestion[0];
-
                 for (int i = 0; i < this.actualAnswerSet.Length; i++)
                 {
                     this.actualAnswerSet[i] = this.actualQuestion[i + 2];
                 }
 
+                //Display attribute to the user
+                this.gbQuestion.Text = this.actualQuestion[0];
+
+                //Show possible choices
+                //Delete old content
                 this.clbAnswers.Items.Clear();
+                //"vonbis" questions need numeric input
                 if (this.vonbisQuestion)
                 {
+                    //"vonbis" question
+                    //Parse Answerset
                     this.actualVonbisAnswerSet = ParseAnsweSetToInt(this.actualAnswerSet);
+                    //add chooseable choices to the checked list box
                     for (int i = 0; i < this.actualVonbisAnswerSet.Length; i++)
                     {
                         if (this.sweepLine[i] && !this.clbAnswers.Items.Contains(this.actualVonbisAnswerSet[i]))
@@ -92,6 +108,7 @@ namespace mDecisioMatClient
                             this.clbAnswers.Items.Add(this.actualVonbisAnswerSet[i]);
                         }
                     }
+                    //Enable and initialize numeric input control elements
                     this.nudLowerLimit.Enabled = true;
                     this.nudUpperLimit.Enabled = true;
                     this.nudLowerLimit.Maximum = this.GetMaximumPossibleAnswer();
@@ -100,10 +117,12 @@ namespace mDecisioMatClient
                     this.nudUpperLimit.Minimum = this.nudLowerLimit.Minimum;
                     this.nudLowerLimit.Value = this.nudLowerLimit.Minimum;
                     this.nudUpperLimit.Value = this.nudUpperLimit.Maximum;
-                    this.btnOK.Enabled = true;
+                    this.btnOK.Enabled = true; //in this case the range is valid
                 }
                 else
                 {
+                    //no "vonbis" question
+                    //add possible choices to checked list box
                     for (int i = 0; i < this.actualAnswerSet.Length; i++)
                     {
                         if (this.sweepLine[i] && !this.clbAnswers.Items.Contains(this.actualAnswerSet[i]))
@@ -111,21 +130,29 @@ namespace mDecisioMatClient
                             this.clbAnswers.Items.Add(this.actualAnswerSet[i]);
                         }
                     }
+                    //disable numeric elements
                     this.nudLowerLimit.Enabled = false;
                     this.nudUpperLimit.Enabled = false;
-                    this.btnOK.Enabled = false;
+                    this.btnOK.Enabled = false; //no valid choice has been made at this moment
                 }
             }
             else
             { 
+                //Automatic end of the sequence
                 this.mainWindow.AnswerString = CreateAnswerString();
                 this.DialogResult = DialogResult.OK;
             }
         }
 
+        /// <summary>
+        /// Method to put the desciptive strings of each of the remaining answers into one common formattet answer string
+        /// </summary>
+        /// <returns>formatted answer string</returns>
         private string CreateAnswerString()
         {
+            //Header
             string result = "Possible choices:" + Environment.NewLine;
+            //remaining answers
             for (int i = 0; i < this.sweepLine.Length; i++)
             {
                 if (this.sweepLine[i])
@@ -136,9 +163,17 @@ namespace mDecisioMatClient
 
             return result;
         }
+
+        /// <summary>
+        /// Find the minimum of the remaining answers in a "vonbis" answerset;
+        /// method will deliver the max value of all answers if there is no possible answer left
+        /// </summary>
+        /// <returns>minimum remaining answer</returns>
         private int GetMinimumPossibleAnswer()
         {
+            //start at the biggest value of the whole answerset
             int result = this.actualVonbisAnswerSet.Max();
+            //find the minimum possible value
             for (int i = 0; i < this.sweepLine.Length; i++)
             {
                 if (this.sweepLine[i] && this.actualVonbisAnswerSet[i] < result)
@@ -149,9 +184,16 @@ namespace mDecisioMatClient
             return result;
         }
 
+        /// <summary>
+        /// Find the maximum of the remaining answers in a "vonbis" answerset;
+        /// method will deliver the min value of all answers if there is no possible answer left
+        /// </summary>
+        /// <returns></returns>
         private int GetMaximumPossibleAnswer()
         {
+            //start at the minimum value of the whole answerset
             int result = this.actualVonbisAnswerSet.Min();
+            //find the maximum possible value
             for (int i = 0; i < this.sweepLine.Length; i++)
             {
                 if (this.sweepLine[i] && this.actualVonbisAnswerSet[i] > result)
@@ -163,8 +205,15 @@ namespace mDecisioMatClient
         }
         #endregion
 
+        #region enventhandler
+        /// <summary>
+        /// Method to skip a question in case the skip button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSkipAttribute_Click(object sender, EventArgs e)
         {
+            //increase question number and ask next question; ignore chosen answers
             this.actualQuestionNumber++;
             AskQuestion(this.actualQuestionNumber);
         }
@@ -179,12 +228,21 @@ namespace mDecisioMatClient
             this.DialogResult = DialogResult.Cancel;
         }
 
+        /// <summary>
+        /// Method to process user choices
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
+            //different algorithm for "vonbis" questions
             if (this.vonbisQuestion)
             {
+                //"vonbis" question
+                //get all remaining answers and update sweepline
                 for (int i = 0; i < this.sweepLine.Length; i++)
                 {
+                    //sweepline stays true if it has been true and the value of this answer is between the user set borders
                     this.sweepLine[i] = this.sweepLine[i] 
                         && this.actualVonbisAnswerSet[i] <= this.nudUpperLimit.Value
                         && this.actualVonbisAnswerSet[i] >= this.nudLowerLimit.Value;
@@ -192,18 +250,29 @@ namespace mDecisioMatClient
             }
             else
             {
+                //no "vonbis" question
+                //get all remaining answers and update sweepline
                 for (int i = 0; i < this.sweepLine.Length; i++)
                 {
+                    //sweepline stays true if it has been true and the attribute of this answer has been chosen by the user
                     this.sweepLine[i] = this.sweepLine[i] && this.clbAnswers.CheckedItems.Contains(this.actualAnswerSet[i]);
                 }
             }
 
+            //increase question number and ask next question
             this.actualQuestionNumber++;
             AskQuestion(this.actualQuestionNumber);
         }
 
+        /// <summary>
+        /// Method to update the minimum value for the upper limit and to ensure that there are possible answers remaining
+        /// disable ok button if there are no possible answers remaining
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nudLowerLimit_ValueChanged(object sender, EventArgs e)
         {
+            //look for remaining possible answers
             bool possibleAnswersRemaining = false;
             for (int i = 0; i < this.sweepLine.Length && !possibleAnswersRemaining; i++)
             {
@@ -211,6 +280,7 @@ namespace mDecisioMatClient
                     && this.actualVonbisAnswerSet[i] <= this.nudUpperLimit.Value
                     && this.actualVonbisAnswerSet[i] >= this.nudLowerLimit.Value;
             }
+            //enable and disable ok button depending on remaining possible answers
             if (possibleAnswersRemaining)
             {
                 this.btnOK.Enabled = true;
@@ -219,11 +289,19 @@ namespace mDecisioMatClient
             {
                 this.btnOK.Enabled = false;
             }
+            //upadte minimum for upper limit
             this.nudUpperLimit.Minimum = this.nudLowerLimit.Value;
         }
 
+        /// <summary>
+        /// Method to update the maximum value for the lower limit and to ensure that there are possible answers remaining
+        /// disable ok button if there are no possible answers remaining
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nudUpperLimit_ValueChanged(object sender, EventArgs e)
         {
+            //look for remaining possible answers
             bool possibleAnswersRemaining = false;
             for (int i = 0; i < this.sweepLine.Length && !possibleAnswersRemaining; i++)
             {
@@ -231,6 +309,7 @@ namespace mDecisioMatClient
                     && this.actualVonbisAnswerSet[i] <= this.nudUpperLimit.Value
                     && this.actualVonbisAnswerSet[i] >= this.nudLowerLimit.Value;
             }
+            //enable and disable ok button depending on remaining possible answers
             if (possibleAnswersRemaining)
             {
                 this.btnOK.Enabled = true;
@@ -239,13 +318,22 @@ namespace mDecisioMatClient
             {
                 this.btnOK.Enabled = false;
             }
+            //upadte maximum for lower limit
             this.nudLowerLimit.Maximum = this.nudUpperLimit.Value;
         }
 
+        /// <summary>
+        /// Method to ensure that the ok button is only enabled if there are possible answers selected
+        /// this method only is needed if the question is no "vonbis" question
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clbAnswers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //enable if no "vonbis" question
             if (!vonbisQuestion)
             {
+                //enable and disable ok button depending on the number of chosen answers
                 if (this.clbAnswers.CheckedIndices.Count > 0)
                 {
                     this.btnOK.Enabled = true;
@@ -257,5 +345,6 @@ namespace mDecisioMatClient
             }
 
         }
+        #endregion
     }
 }
