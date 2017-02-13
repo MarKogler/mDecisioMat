@@ -29,6 +29,7 @@ namespace mDecisioMat
         private int numberOfQuestions;
 
         private bool initialized;
+        private int notAvailableRuleSets;
         
         // Variable for a new ruleset
         private RuleSet[] setsOfRules;
@@ -49,9 +50,23 @@ namespace mDecisioMat
             statusCsvFile = GetDataFromCsvRuleSet();
             Console.WriteLine(Environment.NewLine);
 
-            if (statusCsvFile == true)
+            // Count available rulesets.
+            notAvailableRuleSets = 0;
+            for (int i = 0; i < setsOfRules.Length; i++)
+            {
+                if (setsOfRules[i] == null)
+                {
+                    notAvailableRuleSets++;
+                }
+            }
+
+            if (statusCsvFile == true && notAvailableRuleSets != setsOfRules.Length)
             {
                 Console.WriteLine("All other files are read in successfully.");
+            }
+            else if (notAvailableRuleSets == setsOfRules.Length)
+            {
+                Console.WriteLine("No available rulesets.");
             }
             else
             {
@@ -71,7 +86,7 @@ namespace mDecisioMat
         {
             bool errorOccured;
             string line;
-            char[] saparators = new char[] { ';'};
+            char[] saparators = new char[] {';'};
             string[] separatedLine;
             int lineCounter = 0;
             int indexCounter = 0;
@@ -170,6 +185,7 @@ namespace mDecisioMat
                     Console.WriteLine("Following file was not read in successfully: {0}", availableRuleSetsName[i].ToString());
                     errorOccured = true;
                 }
+
             }
             return (errorOccured);
         }
@@ -192,13 +208,30 @@ namespace mDecisioMat
         /// <returns>Returns all available rulesets.</returns>
         public string[] GetAvailableRuleSets()
         {
-            string[] availableRuleSets = new string[setsOfRules.Length];
+            // Counter for available and not available rulesets.
+            int counter = 0;
+            string[] availableRuleSets;
 
+            // Count the available rulesets.
             for (int i = 0; i < setsOfRules.Length; i++)
             {
-                availableRuleSets[i] = setsOfRules[i].Name;
+                if (setsOfRules[i] == null)
+                {
+                    counter++;
+                }
             }
+            availableRuleSets = new string[setsOfRules.Length - notAvailableRuleSets];
 
+            // Reset the counter.
+            counter = 0;
+            for (int i = 0; i < setsOfRules.Length; i++)
+            {
+                if (setsOfRules[i] != null)
+                {
+                    availableRuleSets[counter] = setsOfRules[i].Name;
+                    counter++;
+                }
+            }
             return (availableRuleSets);
         }
 
@@ -209,12 +242,13 @@ namespace mDecisioMat
         /// <returns>Returns the requested ruleset.</returns>
         public RuleSet GetSpecificRuleSet(string nameOfRuleSet)
         {
-            // Default = Give back the first ruleset.
-            RuleSet neededRuleSet = setsOfRules[0];
+            // Default = Give back null.
+            RuleSet neededRuleSet = null;
 
             for (int i = 0; i < setsOfRules.Length; i++)
             {
-                if (setsOfRules[i].Name == nameOfRuleSet)
+                // Check if setsOfRules[i] is not null, to avoid errors.
+                if (setsOfRules[i] != null && setsOfRules[i].Name == nameOfRuleSet)
                 {
                     neededRuleSet = setsOfRules[i];
                 }
